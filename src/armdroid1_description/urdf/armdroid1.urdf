@@ -1,0 +1,98 @@
+<robot name="armdroid1">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://armdroid1_description/meshes/visual/base.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="shoulder_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://armdroid1_description/meshes/visual/shoulder.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="lowerarm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://armdroid1_description/meshes/visual/lowerarm.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="upperarm_link">
+    <visual>
+      <origin xyz="0 0 -0.19" rpy="0 0 0 "/>
+      <geometry>
+        <mesh filename="package://armdroid1_description/meshes/visual/upperarm.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="wrist1_link" >
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://armdroid1_description/meshes/visual/wrist.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="wrist2_link">
+    <visual>
+      <origin xyz="0 0 0.016" rpy="0 1.57079632679 0 "/>
+      <geometry>
+        <mesh filename="package://armdroid1_description/meshes/visual/hand.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tool_link" />
+
+  <joint name="base_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="shoulder_link" />
+    <origin xyz="0 -0.048 0.139" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.141592" upper="3.141592" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="lowerarm_joint" type="revolute">
+    <parent link="shoulder_link" />
+    <child link="lowerarm_link" />
+    <origin xyz="0 0 0.112" rpy="0 0 -1.57079632679" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-1.088736" upper="2.331236" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="upperarm_joint" type="revolute">
+    <parent link="lowerarm_link" />
+    <child link="upperarm_link" />
+    <origin xyz="0 0 0.19" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-0.9892526" upper="2.593908" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="wrist1_joint" type="revolute"> <parent link="upperarm_link" />
+    <child link="wrist1_link" />
+    <origin xyz="0 0 0.19" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-1.570796" upper="1.570796" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="wrist2_joint" type="revolute">
+    <parent link="wrist1_link" />
+    <child link="wrist2_link" />
+    <origin xyz="0 0 0.01" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.570796" upper="1.570796" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="tool_joint" type="fixed">
+    <parent link="wrist2_link" />
+    <child link="tool_link" />
+    <origin xyz="0 0 0.088" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+
+
+
+</robot>

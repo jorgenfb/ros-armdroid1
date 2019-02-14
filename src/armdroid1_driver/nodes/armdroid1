@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+import rospy
+from armdroid1_driver.io_adapter import IOAdapter
+from armdroid1_driver.armdroid1 import Armdroid
+
+
+if __name__ == '__main__':
+    rospy.init_node('armdroid')
+
+    Armdroid(IOAdapter())
+
+    rospy.spin()
